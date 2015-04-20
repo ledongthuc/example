@@ -2,7 +2,11 @@ Chi tiết về bài viết, bạn có thể tham khảo tại: http://thuc.com.
 
 # Relay guide notes
 
-Relay is a electrical switch, that used to turn on/off the current by electrical signal. Relay is also used to control a circuit by a low-power signal (with complete electrical isolation between control and controlled circuits).
+Relay là một một dạng công tắc, thường dùng để đóng/mở dòng điện trong mạch. Không như những công tắc thông thường, sử dụng cơ học để đóng/mở, relay cho phép ta điều khiển việc đóng/mở thông qua tín hiệu điện truyền vào.
+
+Trong điện tử, các chân của chip thông thường chỉ cung cấp dòng điện có hiệu điện thế khoảng 3.3-5V để điều khiển các thiết bị ngoại vi. Trong trường hợp muốn cấp điện cho thiết bị cần hiệu điện thế cao như quạt máy, đèn, tivi, mô tơ; relay có thể đáp ứng nhu cầu của một một cách hoàn hảo.
+
+Hình ảnh về relay:
 
 ![relay](images/relay_image1.jpg "relay")
 ![relay](images/relay_image2.jpg "relay")
@@ -11,35 +15,33 @@ Relay is a electrical switch, that used to turn on/off the current by electrical
 ![relay](images/relay_image5.jpg "relay")
 ![relay](images/relay_image6.jpg "relay")
 
-In relay's body, you can see the descriptions:
-+ 10A 250VAC.
-+ 10A 125VAC.
-+ 10A 30VDC.
-+ 10A 28VDC.
-+ SRD-05VDC-SL-C.
+Trên thân của Relay, bạn sẽ thấy dòng chứ sau:
++ 10A 250VAC    10A 125VAC
++ 10A 30VDC     10A 28VDC
++ SRD-05VDC-SL-C
 
-They mean:
-+ 10A 250VAC: The max current intensity of connection, where voltage is equal or lesser 250V (AC), is 10A.
-+ 10A 125VAC: The max current intensity of connection, where voltage is equal or lesser 125V (AC), is 10A.
-+ 10A 30VDC: The max current intensity of connection, where voltage is equal or lesser 30V (DC), is 10A.
-+ 10A 28VDC: The max current intensity of connection, where voltage is equal or lesser 28V (DC), is 10A.
-+ SRD-05VDC-SL-C: Voltage of signal to control circuit is 5V.
+Nó có nghĩa là:
++ 10A 250VAC: Cường độ dòng điện tối đa qua các tiếp điểm có hiệu điên thế từ 250V (AC - điện xoay chiều) trở xuống là 10A
++ 10A 125VAC: Cường độ dòng điện tối đa qua các tiếp điểm có hiệu điên thế từ 125V (AC - điện xoay chiều) trở xuống là 10A
++ 10A 30VDC: Cường độ dòng điện tối đa qua các tiếp điểm có hiệu điên thế từ 30V (DC - điện 1 chiều) trở xuống là 10A
++ 10A 28VDC: Cường độ dòng điện tối đa qua các tiếp điểm có hiệu điên thế từ 28V (DC - điện 1 chiều) trở xuống là 10A
++ SRD-05VDC-SL-C: Hiệu điện thế dùng để kích là 5V
 
-# State of relay
+# Đặc tính của Relay
 
-Because relay is a switch, it has two main state: closed and open.
-+ Closed: While closing, the relay allows keep current in circuit. It called is "closed circuit".
-+ Open: While openning, the relay interupt circuit and current doesn't work in circuit. It called is "open circuit".
+Vì là một dạng công tắc, relay sẽ có 2 thái đóng và mở.
++ Đóng (close): Khi ở trạng thái close, relay sẽ cho phép dòng điện chạy qua. Dòng điện có thể chạy qua relay, mạch kín.
++ Mở (open): Khi ở trạng thái open, relay sẽ ngắt dòng điện và không cho dòng điện chạy vào mạch. Ở trạng thái mày, mạch hở.
 
 ![relay](images/relay_state.png "relay")
 
-# Relay's connections
+# Cấu tạo của Relay
 
-In relay, we have six connections. three is used to control the state of relay, three used to connect to circuit (to make circuit is closed or open)
+Một relay thông thường sẽ có 6 cổng giao tiếp, 3 cổng dùng để điều khiển (điều khiển relay đóng hoặc mở) và 3 cổng còn lại để nối vào mạch điện , nơi mà ta muốn đóng hoặc mở dòng điện trong mạch.
 
 ![relay](images/relay_connections.png "relay")
 
-Three connections used to control the state of relay:
+Ba cổng dùng để điều khiển có ký hiệu như sau:
 + DC+: Cung cấp nguồn điện cho relay hoạt động. Cắm vào nguồn điện một chiều có hiệu điện thế từ 3.3-5V tùy vào relay.
 + DC-: Cung cấp nguồn điện cho relay hoạt động. Cắm vào GND (nối đất, cực âm, 0V).
 + IN: Chân tính hiệu, dùng để kích relay.
