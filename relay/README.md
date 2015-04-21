@@ -39,21 +39,21 @@ In relay, we have six connections. three is used to control the state of relay, 
 
 ![relay](images/relay_connections.png "relay")
 
-Three connections used to control the state of relay:
-+ DC+: Cung cấp nguồn điện cho relay hoạt động. Cắm vào nguồn điện một chiều có hiệu điện thế từ 3.3-5V tùy vào relay.
-+ DC-: Cung cấp nguồn điện cho relay hoạt động. Cắm vào GND (nối đất, cực âm, 0V).
-+ IN: Chân tính hiệu, dùng để kích relay.
+Three connections are used to control the state of relay:
++ DC+: Electrode positive. In this article, we connect wire with 5V to this connection.
++ DC-: Electrode positive. Connect to GND.
++ IN: Signal connection that is used to control relay.
 
-Ba cổng dùng để nối vào mạch điện:
-+ COM (Common Connection): Dùng để nối vào nguồn điện. Nếu nguồn điện của bạn là một chiều thì nối cực dương vào đây. Nếu nguồn điện của bạn là xoay chiều thì nối cực âm vào đây.
-+ NC (Normally Close): Chân này mặc định sẽ được nối vào chân COM khi không có bất kì tín hiệu nào hoặc không có lệnh kích hoạt nào đi vào chân IN. Nếu ta nối dây dẫn vào chân này và không kích hoạt relay (thông qua chân IN), dòng điện sẽ chạy từ chân COM qua chân NC. Khi kích hoạt relay (thông qua chân IN), dòng điện từ chân COM sang chân NC sẽ bị ngắt.
-+ NO (Normally Open): Chân này sẽ không được nối vào chân COM khi chúng ta chưa kích hoạt relay (thông qua chân IN). Ban đầu, dòng điện sẽ không thể nào chạy từ chân COM vào chân NO được. Khi kích hoạt relay (thông qua chân IN), dòng điện sẽ chạy từ chân COM sang chân NO.
+Three connections are used to connect to circuit:
++ COM (Common Connection): Connect to power supply. If it's DC, we frequently connect it to positive of power supply. If it's AC, we frequently connect it to hot wire.
++ NC (Normally Close): Connect to COM connection when don't have any trigger int relay. If we connected this connection to wire and don't trigger relay with IN connection, COM and NC will be connected. When we trigger relay with IN connection, COM and NC will be currupted.
++ NO (Normally Open): Only connect to COM connection when having trigger in relay. If we connected this connection to wire and don't trigger relay with IN connection, COM and NO will be corrupted. When we trigger relay with IN connection, COM and NC will be connected.
 
-Để hiểu rõ về cách hoạt động của ba cổng COM, NC, NO khi ở trạng thái bình thường và khi kích hoạt, ta có thể tham khảo 2 mô hình sau
+Usally, you will use either NC or NO with COM to control circuit. To understand how to NC, NO and COM work, we can see following pictures:
 
 ![relay](images/relay_com_nc_no.png "relay")
 
-# Kích hoạt relay
+# Trigger relay
 Để kích hoạt relay (COM kết nối nối qua NO và ngắt kết nối với NC), ta thông qua chân IN để làm việc này. Trước khi nói về chân IN, chúng ta nên biết là có 2 loại relay, một loại lích hoạt kiểu thấp (LOW) và một loại kích hoạt kiểu cao (HIGH). Chúng ảnh hưởng trực tiếp đến cách thức kích relay trên chân IN.
 
 ## Relay kích hoạt kiểu thấp (LOW)
