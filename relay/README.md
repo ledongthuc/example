@@ -1,6 +1,6 @@
 # Relay guide notes
 
-Relay is a electrical switch, that used to turn on/off the current by electrical signal. Relay is also used to control a circuit by a low-power signal (with complete electrical isolation between control and controlled circuits).
+Relay is an electrical switch that used to turn on/off the current by electrical signal. Relay is also used to control a circuit by a low-power signal (with complete electrical isolation between control and controlled circuits).
 
 ![relay](images/relay_image1.jpg "relay")
 ![relay](images/relay_image2.jpg "relay")
@@ -27,13 +27,13 @@ They mean:
 
 Because relay is a switch, it has two main state: closed and open.
 + Closed: While closing, the relay allows keep current in circuit. It called is "closed circuit".
-+ Open: While openning, the relay interupt circuit and current doesn't work in circuit. It called is "open circuit".
++ Open: While opening, the relay interrupts circuit and current doesn't work in circuit. It called is "open circuit".
 
 ![relay](images/relay_state.png "relay")
 
 # Relay's connections
 
-In relay, we have six connections. three is used to control the state of relay, three used to connect to circuit (to make circuit is closed or open)
+In relay, we have six connections. Three is used to control the state of relay, three used to connect to circuit (to make circuit is closed or open)
 
 ![relay](images/relay_connections.png "relay")
 
@@ -47,12 +47,12 @@ Three connections are used to connect to circuit:
 + NC (Normally Close): Connect to COM connection when don't have any trigger int relay. If we connected this connection to wire and don't trigger relay with IN connection, COM and NC will be connected. When we trigger relay with IN connection, COM and NC will be currupted.
 + NO (Normally Open): Only connect to COM connection when having trigger in relay. If we connected this connection to wire and don't trigger relay with IN connection, COM and NO will be corrupted. When we trigger relay with IN connection, COM and NC will be connected.
 
-Usally, you will use either NC or NO with COM to control circuit. To understand how to NC, NO and COM work, we can see following pictures:
+Usually, you will use either NC or NO with COM to control circuit. To understand how to NC, NO and COM work, we can see the following pictures:
 
 ![relay](images/relay_com_nc_no.png "relay")
 
 # Trigger relay
-To trigger relay (COM connect to NO and disconnect to NC), we must use IN connection. Before that, you need to know about 2 kind of relay, that relate to difference of way to use IN connection. They are "Low Voltage Trigger" and "High Voltage Trigger".
+To trigger relay (COM connect to NO and disconnect to NC), we must use IN connection. Before that, you need to know about two kinds of relay that relate to difference of way to use IN connection. They are "Low Voltage Trigger" and "High Voltage Trigger".
 
 ## Low voltage trigger
 With this relay, when we connect IN to GND, relay is triggered (COM connect to NO and disconnect to NC). When we connect IN to +5V, relay isn't triggered (COM connect to NC and disconnect to NO).
@@ -67,13 +67,13 @@ With this relay, when we connect IN to GND, relay isn't triggered (COM connect t
 
 So, how to know what kind of relay are you using ?
 + Ask seller, they know what they sell. Except their mistake :)
-+ Research about transistor of relay that will be discribed detail in product's webiste or package. If it's NPN transistor, the relay is low voltage trigger. If it's PNP transistor, the relay is high voltage trigger.
++ Research about transistor of relay that will be described detail in product's website or package. If it's NPN transistor, the relay is low voltage trigger. If it's PNP transistor, the relay is high voltage trigger.
 + Try :)
 
 ## Demo
-> Alert: demo below use AC. If you don't have experience and knowledgement about it, please don't try. In case you try to try, careful.
+> Alert: demo below use AC. If you don't have experience and knowledment about it, please don't try. In case you try to try, careful.
 
-You have a light that use AC 220V or 110V. You want to use a microcontroller Arduino Uno to control the light. It will turn on or off each 5 seconds. As you know, Arduino uno allows to set an output PIN with 5V. We will use it for control IN connection of relay, that will control the light.
+You have a light that uses AC 220V or 110V. You want to use a microcontroller Arduino Uno to control the light. It will turn on or off each five seconds. As you know, Arduino uno allows to set an output PIN with 5V. We will use it in order to control IN connection of relay that will control the light.
 
 ### Preparation:
 ![relay](images/relay_prepare1.jpg "relay")
@@ -82,7 +82,7 @@ You have a light that use AC 220V or 110V. You want to use a microcontroller Ard
 + Arduino Uno Board.
 + Relay (in this demo, we use low trigger relay).
 + Breadboard (if you want to use, in this demo, I don't use it).
-+ Pincer, băng keo điện.
++ Pincer, electrical tape.
 + Wire to connect Arduino to Relay.
 + Wire to connect light to AC, connect AC to Relay.
 + Light.
@@ -116,7 +116,7 @@ Another line of line, connect to neutral of power supply (yellow)
 
 ### Code
 
-Because of low trigger relay, we will write state LOW to digital pin 7 of Arduino uno to trigger (turn on the light). And write HIGH to normal (turn off the light)
+Because of low trigger relay, we will write state LOW to digital pin 7 of Arduino uno to trigger (turn on the light). And, write HIGH to normal (turn off the light)
 
 ```c++
 int relayPin = 7;
