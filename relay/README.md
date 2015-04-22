@@ -1,5 +1,3 @@
-Chi tiết về bài viết, bạn có thể tham khảo tại: http://thuc.com.vn/relay-cong-tac-dien-va-cach-dung/
-
 # Relay guide notes
 
 Relay is a electrical switch, that used to turn on/off the current by electrical signal. Relay is also used to control a circuit by a low-power signal (with complete electrical isolation between control and controlled circuits).
@@ -54,77 +52,71 @@ Usally, you will use either NC or NO with COM to control circuit. To understand 
 ![relay](images/relay_com_nc_no.png "relay")
 
 # Trigger relay
-Để kích hoạt relay (COM kết nối nối qua NO và ngắt kết nối với NC), ta thông qua chân IN để làm việc này. Trước khi nói về chân IN, chúng ta nên biết là có 2 loại relay, một loại lích hoạt kiểu thấp (LOW) và một loại kích hoạt kiểu cao (HIGH). Chúng ảnh hưởng trực tiếp đến cách thức kích relay trên chân IN.
+To trigger relay (COM connect to NO and disconnect to NC), we must use IN connection. Before that, you need to know about 2 kind of relay, that relate to difference of way to use IN connection. They are "Low Voltage Trigger" and "High Voltage Trigger".
 
-## Relay kích hoạt kiểu thấp (LOW)
-Với loại relay này, khi chúng ta kết nối chân IN với GND (nối đất, cực âm, 0V), relay sẽ được kích. Lúc đó COM sẽ kết nối vào NO và ngắt kết nối với NC. Khi chúng ta kết nối chân IN với cực dương 3.3V-5V, relay sẽ ở trạng thái bình thường. Lúc này COM sẽ kế nối vào NC và ngắt kết nối với NO
+## Low voltage trigger
+With this relay, when we connect IN to GND, relay is triggered (COM connect to NO and disconnect to NC). When we connect IN to +5V, relay isn't triggered (COM connect to NC and disconnect to NO).
 
 ![relay](images/low_relay_trigger.png "relay")
 
-## Relay kích hoạt kiểu cao (HIGH)
+## High voltage trigger
 
-Với loại relay này, khi chúng ta kết nối chân IN với GND (nối đất, cực âm, 0V), relay sẽ ở trạng thái bình thường (không được kích). Lúc đó COM sẽ kết nối vào NO và ngắt kết nối với NO. Khi chúng ta kết nối chân IN với cực dương 3.3V-5V, relay sẽ ở trạng thái kích. Lúc này COM sẽ kế nối vào NC và ngắt kết nối với NC
+With this relay, when we connect IN to GND, relay isn't triggered (COM connect to NC and disconnect to NO). When we connect IN to +5V, relay isn triggered (COM connect to NO and disconnect to NC).
 
 ![relay](images/high_relay_trigger.png "relay")
 
-Vậy làm sao để phân biệt Relay bạn đang xài là kích hoạt kiểu LOW hay HIGH. Có 3 cách:
-+ Hỏi người bán, người bán là người biết rõ về thứ họ bán cho bạn. Trừ khi họ nhầm lẫn :D
-+ Tìm kiếm thông tin về transistor của relay đang dùng. Nếu transistor đó là loại NPN thì đấy chính là relay được kích hoạt ở mức HIGH. Nếu transistor đó là loại PNP thì đấy là relay được kích hoạt ở mức LOW.
-+ Dùng thiết bị đo các chân hoặc cấp nguồn thử.
+So, how to know what kind of relay are you using ?
++ Ask seller, they know what they sell. Except their mistake :)
++ Research about transistor of relay that will be discribed detail in product's webiste or package. If it's NPN transistor, the relay is low voltage trigger. If it's PNP transistor, the relay is high voltage trigger.
++ Try :)
 
+## Demo
+> Alert: demo below use AC. If you don't have experience and knowledgement about it, please don't try. In case you try to try, careful.
 
-## Ví dụ thực tế
+You have a light that use AC 220V or 110V. You want to use a microcontroller Arduino Uno to control the light. It will turn on or off each 5 seconds. As you know, Arduino uno allows to set an output PIN with 5V. We will use it for control IN connection of relay, that will control the light.
 
-> Lưu ý: Ví dụ dưới đây có sử dụng đến dòng điện xoay chiều 220V. Nếu bạn không có nhiều những kinh nghiệm và kiến thức về nó, xin đừng thực hiện. Không nên làm những gì mình chưa hiểu rõ, nhất là với điện :) Nếu bạn quyết tâm làm, nhớ bảo vệ mình và hết sức cẩn thận.
-
-Giả sử bạn có một bóng đèn dây tóc, sử dụng dòng điện xoay chiều 220V. Bạn muốn dùng mạch microcontroller arduino uno để điều khiển việc cứ sau mỗi 5 giây, đèn sẽ là bật hoặc tắt. 
-
-Như bạn đã biết, aruidno uno chỉ cho phép bạn cung cấp dòng điện 5V ra chân OUTPUT. Với 5V này, bạn không cung cấp đủ điện thế cho bóng đèn dây tóc 220V sáng lên được. Vì vậy, bạn phải sử dụng một nguồn điện khác, mạng lưới điện 220V nhà bạn đang xài đủ tiêu chuẩn để làm việc đó. Nhưng làm sao bạn có thể điều khiển dòng điện 220V của nhà bạn để bóng đèn có thể bật hoặc tắt sau 5 giây được? Relay sẽ giúp bạn làm điều này.
-
-### Chuẩn bị:
+### Preparation:
 ![relay](images/relay_prepare1.jpg "relay")
 ![relay](images/relay_prepare2.png "relay")
 
-+ Arduino Uno Board (+ dây cắm máy tính)
-+ Relay (trong ví dụ này mình dùng relay được kích ở mức LOW)
-+ Dây cắm giữa Arduino uno và relay
-+ Breadboard (nếu bạn muốn xài, trong ví dụ này mình không sử dụng breadboard)
-+ Kềm, băng keo điện
-+ Đèn
++ Arduino Uno Board.
++ Relay (in this demo, we use low trigger relay).
++ Breadboard (if you want to use, in this demo, I don't use it).
++ Pincer, băng keo điện.
++ Wire to connect Arduino to Relay.
++ Wire to connect light to AC, connect AC to Relay.
++ Light.
 
-### Kết nối
+### Connect
 
-Arduino kết nối với Relay theo sơ đồ sau:
+Arduino connect to Relay as following table:
 
 | Aruino Pins    | Relay connections  |
 | -------------- | ------------------ |
 | 5V             | DC+                |
 | GND            | DC-                |
-| chân digital 7 | IN                 |
+| Digital pin 7  | IN                 |
 
 ![relay](images/relay_arduino1.jpg "relay")
 ![relay](images/relay_arduino2.jpg "relay")
 ![relay](images/relay_arduino3.jpg "relay")
 
 
-
-Relay kết nối với mạch theo sơ đồ sau:
+Relay connect to circuit as following table:
 
 | Relay connections | Circuit                               |
 | ----------------- | ------------------------------------- |
-| COM               | Dây nóng của nguồn điện (dây màu đỏ)  |
-| NC                | Nối vào 1 đầu của bóng đèn            |
+| COM               | Hot line of power supply  (red line)  |
+| NC                | Connect to light                      |
 
-Đầu còn lại của bóng đèn thì nối vào dây trung hòa của nguồn điện
+Another line of line, connect to neutral of power supply (yellow)
 
 ![relay](images/relay_result2.jpg "relay")
 ![relay](images/relay_ac.jpg "relay")
 
 ### Code
 
-Do relay của mình kích ở mức LOW nên muốn bật đèn, mình sẽ write state LOW vào chân 7 của Arduino Uno. Muốn tắt đèn, mình sẽ write state HIGH vào chân 7 của Arduino.
-
-Mình có viết một đoạn code nhỏ để demo ví dụ trên
+Because of low trigger relay, we will write state LOW to digital pin 7 of Arduino uno to trigger (turn on the light). And write HIGH to normal (turn off the light)
 
 ```c++
 int relayPin = 7;
@@ -141,13 +133,12 @@ void loop() {
 }
 ```
 
-### Hình kết quả
+### Results
 
 ![relay](images/relay_result1.jpg "relay")
 
 
 ### Video
-Để tiện đường coi, mình có quay một đoạn video nhỏ để các bạn tiện coi.
 http://youtu.be/81GHj-mZJ5w
 
 [![Relay](http://img.youtube.com/vi/81GHj-mZJ5w/0.jpg)](https://www.youtube.com/watch?v=81GHj-mZJ5w)
