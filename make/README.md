@@ -35,10 +35,9 @@ Introduction to makefiles
         ...
         ...
 ```
-
 > Simple makefile
 >> After beginning details, we discover a simple makefile example. \
->> We need to build an application named 'office' that need link object file of 'main.o' 'editor.o', 'command.o' and 'layout.o'. We have 4 source file main.c, editor.c, command.c, laout.c and 2 header file common.h and buffer.h. common.h is used in three source file and buffer.h is used in editor.c.
+>> We want to build an application named 'office' that link object file of 'main.o' 'editor.o', 'command.o' and 'layout.o'. We have 4 source file main.c, editor.c, command.c, laout.c and 2 header file common.h and buffer.h. common.h is used in 4 source file and buffer.h is used in editor.c.
 ``` Makefile
     office : main.o command.o layout.o editor.o
         cc -o office main.o command.o layout.o editor.o
@@ -58,10 +57,17 @@ Introduction to makefiles
     clean :
         rm main.o command.o layout.o editor.o office
 ```
-
-> type 'make' to generate office application and 'make clean' to delete object file and excuable file.
+>> type 'make' to generate office application and 'make clean' to delete object file and excuable file.
 
 > How make read makefiles
+>> When we type command Make, it will check the 
+>> The make will read the first rule in makefiles as default rule. Default rule will be invoked when you use command 'make'. In example office, default rule is:
+``` makefile
+    office : main.o command.o layout.o editor.o
+        cc -o office main.o command.o layout.o editor.o
+```
+>> When the make begin with a rule, it will check rule's prerequisites first. In default rule, the prerequisites are main.o, command.o, layout.o, editor.o. In sencond rule, the prerequires is only main.c.
+>> If prerequisites file is defined as a target in other rule, make will continue with prerequisites' rules. If prerequisites isn't defined in another rule, it will check the file.
 > Variable
 > Automatic detect
 > More automatic
