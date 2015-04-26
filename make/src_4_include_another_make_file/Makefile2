@@ -1,0 +1,2 @@
+$(objects) : console.h
+main.o : toilet.h
