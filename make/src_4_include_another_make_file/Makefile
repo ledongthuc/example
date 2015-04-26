@@ -1,6 +1,7 @@
-objects = main.o console.o toilet.o
+test1 : test2
+	echo "create test1" > test1
 
-home : $(objects)
-	cc -o home $(objects)
+include Makefile2
+
 clean :
-	rm home $(objects)
+	rm test1 test2

@@ -1,2 +1,2 @@
-$(objects) : console.h
-main.o : toilet.h
+test2 : 
+	echo "create test2" > test2

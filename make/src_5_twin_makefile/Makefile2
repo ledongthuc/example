@@ -1,2 +1,2 @@
 text2: 
-	echo content2 > text2
+	echo content2 > text1

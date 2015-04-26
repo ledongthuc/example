@@ -44,4 +44,42 @@ clean :
 	rm home $(objects)
 ```
 
+## Example 4: Include another makefile
+Makefile structure allows include another one
+Makefile
+``` makefile
+test1 : test2
+	echo "create test1" > test1
 
+include Makefile2
+
+clean :
+	rm test1 test2
+```
+
+Makefile
+``` makefile
+test2 : 
+	echo "create test2" > test2
+```
+
+## Example 5: Two makefile with same target
+Makefile allows more makefile with same target (different behaviors)
+``` makefile
+text1: 
+	echo content1 > text1
+
+text2: force
+	@$(MAKE) -f Makefile2 $@
+
+force: ;
+
+clear: 
+	rm text1 text2
+```
+
+Makefile
+``` makefile
+text2: 
+	echo content2 > text1
+```
